@@ -39,7 +39,7 @@ jobs:
         with:
           allure-endpoint: https://testing.allure.aws.qameta.in/
           allure-token: ${{ secrets.ALLURE_TOKEN }}
-          allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
+          allure-project-id: 6207
       - name: Build with Gradle
         run: |
           allurectl watch -- ./gradlew clean test
