@@ -34,6 +34,7 @@ public class PullRequestsWebTest {
     @DisplayName("New brilliant request by authorized user")
     public void shouldCreateBrilliantPullRequest() {
         Allure.steps("new simple step");
+        steps.createPullRequestFromBranch(BRANCH);
     }
     
     @Test
