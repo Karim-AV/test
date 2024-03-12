@@ -26,7 +26,18 @@ public class PullRequestsWebTest {
     public void startDriver() {
         steps.startDriver();
     }
-
+    
+    @Test
+    @Microservice("Diamond")
+    @Story("Create new brilliant request")
+    @Tags({@Tag("web"), @Tag("regress"), @Tag("smoke")})
+    @DisplayName("Creating new brilliant request by authorized user")
+    public void shouldCreatePullRequest() {
+        steps.openBrilliantPullRequestsPage(OWNER, REPO);
+        steps.createBrilliantPullRequestFromBranch(BRANCH);
+        steps.shouldSeeBrilliantPullRequestForBranch(BRANCH);
+    }
+    
     @Test
     @TM4J("AE-T6")
     @Microservice("Billing")
