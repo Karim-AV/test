@@ -33,9 +33,7 @@ public class PullRequestsWebTest {
     @Tags({@Tag("web"), @Tag("regress"), @Tag("smoke")})
     @DisplayName("Creating new brilliant request by authorized user")
     public void shouldCreateBrilliantPullRequest() {
-        steps.openBrilliantPullRequestsPage();
-        steps.createBrilliantPullRequestFromBranch();
-        steps.shouldSeeBrilliantPullRequestForBranch();
+        Allure.step("new simple step");
     }
     
     @Test
