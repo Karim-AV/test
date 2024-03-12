@@ -1,1 +1,11 @@
+package 
 
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+    @Test
+    @DisplayName("Brilliant test")
+    void simpleTest(){
+    Allure.step("new brilliant step");
+}
