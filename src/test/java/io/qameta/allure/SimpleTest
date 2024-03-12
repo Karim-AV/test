@@ -5,7 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
     @Test
+    @Feature("Diamond")
+    @Owner("Karim")
     @DisplayName("Brilliant test")
     void simpleTest(){
-    Allure.step("new brilliant step");
+    Allure.step("first brilliant step");
+    Allure.step("second brilliant step");
+    Allure.step("third brilliant step");
 }
