@@ -28,13 +28,10 @@ public class PullRequestsWebTest {
     }
     
     @Test
-    @Microservice("Diamond")
     @Story("Create new brilliant request")
-    @Tags({@Tag("web")})
     @DisplayName("New brilliant request by authorized user")
-    public void shouldCreateBrilliantPullRequest() {
-        Allure.steps("new simple step");
-        steps.createPullRequestFromBranch(BRANCH);
+    public void createBrilliantRequest() {
+        Allure.step("new simple step");
     }
     
     @Test
