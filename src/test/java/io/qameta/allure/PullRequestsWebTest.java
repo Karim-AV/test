@@ -27,6 +27,13 @@ public class PullRequestsWebTest {
         steps.startDriver();
     }
     
+     @Test
+     @Story("Create new brilliant request")
+     @DisplayName("New brilliant request by authorized user")
+     public void createBrilliantRequest() {
+         Allure.step("new simple step");
+     }
+    
     @Test
     @TM4J("AE-T6")
     @Microservice("Billing")
