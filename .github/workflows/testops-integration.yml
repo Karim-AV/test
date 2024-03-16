@@ -7,7 +7,7 @@ on:
       TEST_ENDPOINT:
         description: "Endpoint for tests"
         required: true
-        default: https://testing.allure.aws.qameta.in/
+        default: https://dev.github.com
       TEST_BROWSER:
         description: "Browser for tests"
         required: true
