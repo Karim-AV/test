@@ -37,6 +37,19 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+          
+      - uses: actions/github-script@v4
+        id: allure-job-uid
+        with:
+          result-encoding: string
+          script: |
+            const result = await github.actions.getWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+            return `${context.repo.owner}/${context.repo.repo}/actions/workflows/${result.data.workflow_id}`
+            
       - name: install and configure allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
