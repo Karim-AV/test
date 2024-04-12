@@ -24,6 +24,8 @@ env:
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_PROJECT_ID: 6207
   ALLURE_ENDPOINT: https://testing.allure.aws.qameta.in/
+  #  ALLURE_TESTPLAN_PATH: "./testplan.json"
+
   #ALLURE_JOB_RUN_URL: 
 
 jobs:
