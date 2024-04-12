@@ -68,7 +68,7 @@ jobs:
       - name: Get environments
         run: | 
           printenv 
-          export ALLURE_JOB_RUN_URL=$(bin/allurectl job-run env | grep ALLURE_JOB_RUN_URL | cut -d "=" -f 2)
+          export ALLURE_JOB_RUN_URL=$(bin/allurectl job-run env | grep ALLURE_JOB_RUN_URL)
           echo "allure-ci-env=$(bin/allurectl ci env --encode)" >> $GITHUB_OUTPUT
           echo "allure-job-run-url=$ALLURE_JOB_RUN_URL" >> $GITHUB_OUTPUT
       - name: Get ALLURE_ environments
