@@ -49,10 +49,12 @@ jobs:
           export $( ./allurectl job-run env)
           printenv | grep TEST_
           printenv | grep ALLURE_
-          printenv
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
           TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
+      - name: Get environments
+        run: | 
+          printenv 
       - name: Get ALLURE_ environments
         run: | 
           printenv | grep ALLURE_
