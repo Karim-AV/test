@@ -40,6 +40,8 @@ jobs:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
+      - name: Set allure-ci-env variable
+        run: echo "allure-ci-env=${{ env.ALLURE_JOB_RUN_ID}}" >> $GITHUB_ENV
       - name: Build with Gradle
         run: |
           allurectl watch -- ./gradlew clean test
