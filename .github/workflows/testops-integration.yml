@@ -33,8 +33,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
-        run: |
-          printenv | grep ALLURE_
         with:
           java-version: 1.8
       - name: install and configure allurectl
@@ -43,8 +41,6 @@ jobs:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
-        run: |
-          printenv | grep ALLURE_
       - name: Set allure-ci-env variable
         run: echo "allure-ci-env=${{ env.ALLURE_JOB_RUN_ID}}" >> $GITHUB_ENV
       - name: Build with Gradle
