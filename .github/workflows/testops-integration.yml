@@ -41,6 +41,25 @@ jobs:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
+          
+  DownloadAllureCtl:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    outputs:
+      allure-ci-env: ${{ steps.setup-allure-env.outputs.allure-ci-env }}
+      allure-job-run-url: ${{ steps.setup-allure-env.outputs.allure-job-run-url }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: install and configure allurectl
+        uses: allure-framework/setup-allurectl@v1
+      - name: setup allure env
+        id: setup-allure-env
+        run: |
+          allurectl watch -- bin/alluregen do --strategy ALL_PASSED --output ${ALLURE_RESULTS}
+          export ALLURE_JOB_RUN_URL=$(bin/allurectl job-run env | grep ALLURE_JOB_RUN_URL | cut -d "=" -f 2)
+          echo "allure-ci-env=$(bin/allurectl ci env --encode)" >> $GITHUB_OUTPUT
+          echo "allure-job-run-url=$ALLURE_JOB_RUN_URL" >> $GITHUB_OUTPUT
+          
       - name: Set allure-ci-env variable
         run: echo "allure-ci-env=${{ env.ALLURE_JOB_RUN_ID}}" >> $GITHUB_ENV
       - name: Build with Gradle
@@ -55,6 +74,9 @@ jobs:
       - name: Get environments
         run: | 
           printenv 
+          export ALLURE_JOB_RUN_URL=$(bin/allurectl job-run env | grep ALLURE_JOB_RUN_URL | cut -d "=" -f 2)
+          echo "allure-ci-env=$(bin/allurectl ci env --encode)" >> $GITHUB_OUTPUT
+          echo "allure-job-run-url=$ALLURE_JOB_RUN_URL" >> $GITHUB_OUTPUT
       - name: Get ALLURE_ environments
         run: | 
           printenv | grep ALLURE_
