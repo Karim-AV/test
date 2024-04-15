@@ -6,7 +6,6 @@ env:
   ALLURE_PROJECT_ID: 6207
   ALLURE_ENDPOINT: https://testing.allure.aws.qameta.in/
 
-
 jobs:
   all-tests:
     runs-on: ubuntu-latest
@@ -16,7 +15,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-          
+
       - uses: actions/github-script@v4
         id: allure-job-uid
         with:
@@ -28,14 +27,14 @@ jobs:
               run_id: context.runId,
             });
             return `${context.repo.owner}/${context.repo.repo}/actions/workflows/${result.data.workflow_id}`
-            
-     - name: Install and configure allurectl
+
+      - name: Install and configure allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
-          
+
       - name: Build with Gradle
         run: |
           allurectl watch print "hello world"
@@ -44,7 +43,7 @@ jobs:
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
           TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
-      
+
       - name: Get ALLURE_ environments
-        run: | 
+        run: |
           printenv | grep ALLURE_
