@@ -43,3 +43,10 @@ jobs:
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
           TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
+          
+      - name: Get environments
+        run: | 
+          printenv | grep ALLURE_
+          export ALLURE_JOB_RUN_URL=$(bin/allurectl job-run env | grep ALLURE_JOB_RUN_URL)
+          echo "allure-ci-env=$(bin/allurectl ci env --encode)" >> $GITHUB_OUTPUT
+          echo "allure-job-run-url=$ALLURE_JOB_RUN_URL" >> $GITHUB_OUTPUT
