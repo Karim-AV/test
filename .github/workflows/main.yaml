@@ -17,10 +17,6 @@ env:
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_PROJECT_ID: 6207
   ALLURE_ENDPOINT: https://testing.allure.aws.qameta.in/
-  #ALLURE_JOB_RUN_URL: ${{ github.event.inputs.ALLURE_JOB_RUN_URL }}
-  ALLURE_JOB_RUN_URL: ''
-
-
 
 jobs:
   all-tests:
@@ -53,8 +49,5 @@ jobs:
           export $(allurectl job-run env)
           export ALLURE_JOB_RUN_URL=$(allurectl job-run env | grep ALLURE_JOB_RUN_URL | cut -d "=" -f 2)
           echo "ALLURE_JOB_RUN_URL=$ALLURE_JOB_RUN_URL" >> $GITHUB_ENV
-          echo $GITHUB_ENV
-          echo "ALLURE_JOB_RUN_URL=$ALLURE_JOB_RUN_URL"
-          echo "The ALLURE_JOB_RUN_URL is $ALLURE_JOB_RUN_URL"
-          echo "Report link: ${{ env.ALLURE_JOB_RUN_URL }} | View Report"
+          echo "Report link: $ALLURE_JOB_RUN_URL | View Report"
 
