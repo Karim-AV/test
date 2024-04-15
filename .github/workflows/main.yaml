@@ -38,7 +38,6 @@ jobs:
         
       - name: ALLURE_JOB_RUN_URL
         run: |
-          export $(allurectl job-run env)
           export ALLURE_JOB_RUN_URL=$(allurectl job-run env | grep ALLURE_JOB_RUN_URL | cut -d "=" -f 2)
           echo "Report link: $ALLURE_JOB_RUN_URL | View Report"
 
