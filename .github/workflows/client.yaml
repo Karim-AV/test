@@ -149,9 +149,9 @@ jobs:
           DEV_PASS: ${{ secrets.DEV_PASS }}
         run: |
           export ALLURE_CI_ENV="${ALLURE_CI_ENV}"
-          export $(allurectl job-run env)
           allurectl watch -- npm run test:local:sanity:${{ inputs.environment || 'prod' }}:en -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
+          export $(allurectl job-run env)
+          
       - name: Display allure-results folder after tests
         if: always()
         run: ls -R allure-results
@@ -232,7 +232,7 @@ jobs:
                 color: '${{ needs.sanity-tests.result }}' === 'success' ? 'good' : '${{ needs.sanity-tests.result }}' === 'failure' ? 'danger' : 'warning',
                 text: `Cryptomaniaks Sanity Tests - Production Site - ${{ github.event_name }}`,
                 fields: [
-                  { title: 'Report', value: 'https://findco.testops.cloud/jobrun/${{ env.ALLURE_JOB_RUN_ID }} |View Report>', short: false }
+                  { title: 'Report', value: 'https://findco.testops.cloud/jobrun/${{ env.ALLURE_JOB_RUN_URL }} |View Report>', short: false }
                 ]
               }]
             }
