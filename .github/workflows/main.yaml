@@ -40,14 +40,10 @@ jobs:
           echo "hello world"
           export $(allurectl job-run env)
           printenv | grep ALLURE_
-        env:
-          TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
-          TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
-      
+        
       - name: ALLURE_JOB_RUN_URL
         run: |
           export $(allurectl job-run env)
           export ALLURE_JOB_RUN_URL=$(allurectl job-run env | grep ALLURE_JOB_RUN_URL | cut -d "=" -f 2)
-          echo "ALLURE_JOB_RUN_URL=$ALLURE_JOB_RUN_URL" >> $GITHUB_ENV
           echo "Report link: $ALLURE_JOB_RUN_URL | View Report"
 
