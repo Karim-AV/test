@@ -17,6 +17,8 @@ env:
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_PROJECT_ID: 6207
   ALLURE_ENDPOINT: https://testing.allure.aws.qameta.in/
+  ALLURE_JOB_RUN_URL: ${{ env.ALLURE_JOB_RUN_URL }}
+
 
 jobs:
   all-tests:
@@ -48,7 +50,5 @@ jobs:
         run: | 
           export $(allurectl job-run env)
           printenv | grep ALLURE_
-          export ALLURE_JOB_RUN_URL=$(bin/allurectl job-run env | grep ALLURE_JOB_RUN_URL)
-          echo "allure-ci-env=$(bin/allurectl ci env --encode)" >> $GITHUB_OUTPUT
-          echo "allure-job-run-url=$ALLURE_JOB_RUN_URL" >> $GITHUB_OUTPUT
-          echo $GITHUB_OUTPUT
+          export ALLURE_JOB_RUN_URL=$(allurectl job-run env | grep ALLURE_JOB_RUN_URL | cut -d "=" -f 2)
+          printenv | grep ALLURE_
