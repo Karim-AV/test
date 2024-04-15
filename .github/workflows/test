@@ -29,12 +29,13 @@ jobs:
             });
             return `${context.repo.owner}/${context.repo.repo}/actions/workflows/${result.data.workflow_id}`
             
-      - name: install and configure allurectl
+     - name: Install and configure allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
+          
       - name: Build with Gradle
         run: |
           allurectl watch print "hello world"
@@ -43,7 +44,7 @@ jobs:
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
           TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
+      
       - name: Get ALLURE_ environments
         run: | 
           printenv | grep ALLURE_
-      
