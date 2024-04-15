@@ -37,7 +37,7 @@ jobs:
 
       - name: Build with Gradle
         run: |
-          allurectl watch print "hello world"
+          echo "hello world"
           export $(allurectl job-run env)
           printenv | grep ALLURE_
         env:
