@@ -1,4 +1,4 @@
-name: gh-integration
+name: test
 
 env:
   ALLURE_RESULTS: "build/allure-results"
