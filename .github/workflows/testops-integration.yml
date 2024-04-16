@@ -56,7 +56,7 @@ jobs:
           allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
       - name: Build with Gradle
         run: |
-          allurectl --log fatal watch ./gradle clean test
+          allurectl watch ./gradlew clean test
           export $(allurectl job-run env)
           printenv | grep ALLURE_
         env:
