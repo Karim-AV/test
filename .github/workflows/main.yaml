@@ -32,7 +32,7 @@ jobs:
 
       - name: Build with Gradle
         run: |
-          allurectl watch --log string ./gradle clean test
+          allurectl --insecure watch --log string ./gradle clean test
           echo "hello world"
           export $(allurectl job-run env)
           printenv | grep ALLURE_
